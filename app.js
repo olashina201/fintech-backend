@@ -38,7 +38,7 @@ app.use((req, res, next) => {
       autoIndex: false,
     };
     // connect you DB here
-    await mongoose.connect("mongodb+srv://olashina:quadri201@medicx.n7bq5.mongodb.net/Medicx?retryWrites=true&w=majority", options);
+    await mongoose.connect(process.env.DB_URL, options);
     console.log("connected to DB");
   } catch (err) {
     console.log(err.toString());
