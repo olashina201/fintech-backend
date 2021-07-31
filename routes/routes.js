@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt")
-const {auth} =require('../middleware/auth.js');
+const { auth } = require('../middleware/auth.js');
 const User = require("../models/user.js");
 
 router.post("/signup", async (request, response) => {
