@@ -66,7 +66,8 @@ router.post('/register', (req,res) => {
             });
         });
     });
- });
+});
+
 
 router.post('/login', function(req,res){
     let token=req.cookies.auth;
