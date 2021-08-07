@@ -1,17 +1,14 @@
-const User=require('../models/user');
+const jwt = require("jsonwebtoken");
 
-let auth = (req, res, next) => {
-    let token = req.cookies.auth;
-    User.findByToken(token, (err, user)=>{
-        if(err) throw err;
-        if(!user) return res.json({
-            error :true
-        });
+module.exports = (req, res, next) => {
+    try {
+        const token = req.header("x-auth-token");
+        if (!token) return res.status(403).send("Access denied...");
 
-        req.token = token;
-        req.user = user;
+        const decoded = jwt.verify(token, process.env.JWT_KEY);
+        req.user = decoded;
         next();
-    })
-}
-
-module.exports={auth};
+    } catch (error) {
+        res.status(400).send("Invalid token");
+    }
+};
