@@ -22,6 +22,8 @@ const signupModel = new mongoose.Schema({
         required: true,
         minlength:8
     },
+    emailToken: String,
+    isVerified: Boolean,
     date: {
         type: Date,
         default: Date.now
